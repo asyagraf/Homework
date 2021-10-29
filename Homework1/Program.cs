@@ -10,6 +10,7 @@ namespace Homework1
             do
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
+
                 Console.WriteLine("1 - Чтение из файла");
                 Console.WriteLine("2 - Квадратный корень");
                 Console.WriteLine("3 - HTML Яндекса");
@@ -17,13 +18,15 @@ namespace Homework1
 
                 menu = Console.ReadLine();
 
-                switch(menu)
+                Console.ForegroundColor = ConsoleColor.White;
+
+                switch (menu)
                 {
                     case "1":
                         //
                         break;
                     case "2":
-                        //
+                        SquareRoot.GetSquareRoot();
                         break;
                     case "3":
                         //

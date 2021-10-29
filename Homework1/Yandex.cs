@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Homework1
 {
-    class Yandex
+    public static class Yandex
     {
     }
 }

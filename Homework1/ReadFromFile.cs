@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Homework1
 {
-    class ReadFromFile
+    public static class ReadFromFile
     {
     }
 }
