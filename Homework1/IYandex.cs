@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Homework1
 {
-    public static class Yandex
+    interface IYandex
     {
     }
 }
