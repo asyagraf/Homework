@@ -2,7 +2,7 @@
 
 namespace Homework1
 {
-    class Program : ISquareRoot, IReadFromFile
+    class Program : ISquareRoot, IReadFromFile, IYandex
     {
         static void Main(string[] args)
         {
@@ -27,7 +27,8 @@ namespace Homework1
                         ISquareRoot.GetSquareRoot();
                         break;
                     case "3":
-                        //
+                        Console.ForegroundColor = ConsoleColor.White;
+                        IYandex.GetContent();
                         break;
                     case "4":
                         break;
