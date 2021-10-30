@@ -16,25 +16,25 @@ namespace Homework1
                 Console.WriteLine("3 - HTML Яндекса");
                 Console.WriteLine("4 - Выход");
 
-                menu = Console.ReadLine();
-
-                Console.ForegroundColor = ConsoleColor.White;
+                menu = Console.ReadLine();                
 
                 switch (menu)
                 {
                     case "1":
-                        //
+                        IReadFromFile.ReadFromFile();
                         break;
                     case "2":
-                        SquareRoot.GetSquareRoot();
+                        ISquareRoot.GetSquareRoot();
                         break;
                     case "3":
-                        //
+                        Console.ForegroundColor = ConsoleColor.White;
+                        IYandex.GetContent();
                         break;
                     case "4":
                         break;
                     default:
-                        //errors
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Неверный формат ввода");
                         break;
                 }
             }

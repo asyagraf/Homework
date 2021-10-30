@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework1
 {
-    public static class SquareRoot
+    interface ISquareRoot
     {
         public static void GetSquareRoot()
         {
@@ -25,6 +21,7 @@ namespace Homework1
         }
         private static void Count(double i)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(Math.Sqrt(i));        
         }
     }
