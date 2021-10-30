@@ -2,7 +2,7 @@
 
 namespace Homework1
 {
-    class Program : ISquareRoot, IReadFromFile, IYandex
+    class Program
     {
         static void Main(string[] args)
         {

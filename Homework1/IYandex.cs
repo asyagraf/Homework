@@ -19,9 +19,35 @@ namespace Homework1
             using HttpContent content = response.Content;
             Stream result = content.ReadAsStream();
             using StreamReader sr = new StreamReader(result);
-            Console.WriteLine(sr.ReadToEnd());
+            string rslt = sr.ReadToEnd();
+            StringBuilder sb = new StringBuilder(rslt);
+
+            int i = 3000;
+            string menu;
+
+            while (sb.ToString().Length >= i)
+            {
+                Console.WriteLine(sb.ToString(0, i));
+                sb = new StringBuilder(sb.ToString(i, sb.ToString().Length - i));
+                Console.WriteLine("Продолжить вывод HTML? 1 - да, 2 - нет");
+                menu = Console.ReadLine();
+
+                switch (menu)
+                {
+                    case "1":
+                        break;
+                    case "2":
+                        return;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Неверный формат ввода");
+                        return;
+                }
+
+            }
+
+            Console.WriteLine(sb.ToString());
+            Console.WriteLine("Вывод HTML завершён");
         }
-
-
     }
 }
