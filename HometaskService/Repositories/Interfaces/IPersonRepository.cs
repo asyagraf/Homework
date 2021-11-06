@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HometaskService.Repositories.Interfaces
 {
-    public interface IPersonRepository: IDisposable
+    internal interface IPersonRepository
     {
         string GetById(int id);
-        List<string> GetAll(Person person);
+        List<string> GetAll();
         void Create(Person person);
         void Update(Person person);
         void Delete(int id);

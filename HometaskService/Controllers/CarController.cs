@@ -1,4 +1,6 @@
 ﻿using HometaskService.Models;
+using HometaskService.Repositories;
+using HometaskService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -12,81 +14,41 @@ namespace HometaskService.Controllers
     [Route("[controller]")]
     public class CarController : ControllerBase
     {
-        //fix keys and _cache
-        private IMemoryCache _cache;
-        private List<string> _keys;
+        private ICarRepository carRepository;
 
         public CarController(IMemoryCache cache, List<string> keys)
         {
-            _cache = cache;
-            _keys = keys;
+            carRepository = new CarRepository(cache, keys);
         }
 
         [HttpGet("one")]
         public string Get([FromQuery] string number)
         {
-            if (_cache.Get(number) is not null)
-            {
-                try
-                {
-                    Car car = (Car)_cache.Get(number);
-                    return $"Brand: {car.Brand}\nModel: {car.Model}\nNumber: {number}";
-                }
-                catch (Exception exc)
-                {
-                    Console.WriteLine(exc.Message);
-                }
-            }
-            return "This car doesn't exist";
-
+            return carRepository.GetByNumber(number);
         }
 
         [HttpGet("all")]
         public List<string> GetAll()
         {
-            List<string> cars = new List<string>();
-            foreach (string key in _keys)
-            {
-                try
-                {
-                    Car car = (Car)_cache.Get(key);
-                    cars.Add($"Brand: {car.Brand}   Model: {car.Model}   Number: {car.Number}");
-                }
-                catch (Exception exc)
-                {
-                    Console.WriteLine(exc.Message);
-                }
-            }
-            return cars;
+            return carRepository.GetAll();
         }
 
         [HttpPost]
         public void Create([FromBody] Car car)
         {
-            if (_cache.Get(car.Number) is null)
-            {
-                _cache.Set(car.Number, car);
-                _keys.Add(car.Number);
-            }
+            carRepository.Create(car);
         }
 
         [HttpPut]
         public void Update([FromBody] Car car)
         {
-            if (_cache.Get(car.Number) is not null)
-            {
-                _cache.Set(car.Number, car);
-            }
+            carRepository.Update(car);
         }
 
         [HttpDelete]
         public void Delete([FromQuery] string number)
         {
-            if (_cache.Get(number) is not null)
-            {
-                _cache.Remove(number);
-                _keys.Remove(number);
-            }
+            carRepository.Delete(number);
         }
     }
 }
