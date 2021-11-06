@@ -71,13 +71,11 @@ namespace HometaskService.Controllers
         }
 
         [HttpPut]
-        public void Update([FromQuery] string number, [FromBody] Car car)
+        public void Update([FromBody] Car car)
         {
-            if (_cache.Get(number) is not null)
+            if (_cache.Get(car.Number) is not null)
             {
                 _cache.Set(car.Number, car);
-                _keys.Remove(number);
-                _keys.Add(car.Number);
             }
         }
 

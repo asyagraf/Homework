@@ -85,7 +85,7 @@ namespace HometaskService.Controllers
         }
 
         [HttpPut]
-        public void Update([FromQuery] int id, [FromBody] Person person)
+        public void Update([FromBody] Person person)
         {
             List<string> persons = new List<string>();
             try
@@ -102,7 +102,7 @@ namespace HometaskService.Controllers
                 foreach (string temp in persons)
                 {
                     line = temp.Split('/');
-                    if (line[0] != id.ToString())
+                    if (line[0] != person.Id.ToString())
                     {
                         sw.WriteLine(temp);
                     }
