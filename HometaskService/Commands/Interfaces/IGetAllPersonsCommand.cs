@@ -1,10 +1,10 @@
-﻿using HometaskService.Models;
+﻿using HometaskService.ModelsDTO;
 using System.Collections.Generic;
 
 namespace HometaskService.Commands.Interfaces
 {
     public interface IGetAllPersonsCommand
     {
-        List<Person> Execute();
+        List<PersonDTO> Execute();
     }
 }

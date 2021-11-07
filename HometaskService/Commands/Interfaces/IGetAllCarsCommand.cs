@@ -1,10 +1,10 @@
-﻿using HometaskService.Models;
+﻿using HometaskService.ModelsDTO;
 using System.Collections.Generic;
 
 namespace HometaskService.Commands.Interfaces
 {
     public interface IGetAllCarsCommand
     {
-        List<Car> Execute();
+        List<CarDTO> Execute();
     }
 }

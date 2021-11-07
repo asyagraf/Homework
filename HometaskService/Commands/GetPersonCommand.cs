@@ -1,5 +1,7 @@
 ﻿using HometaskService.Commands.Interfaces;
+using HometaskService.Mappers.Interfaces;
 using HometaskService.Models;
+using HometaskService.ModelsDTO;
 using HometaskService.Repositories.Interfaces;
 
 namespace HometaskService.Commands
@@ -7,14 +9,16 @@ namespace HometaskService.Commands
     public class GetPersonCommand : IGetPersonCommand
     {
         private readonly IPersonRepository _repository;
-        public GetPersonCommand(IPersonRepository repository)
+        private readonly IMapper<Person, PersonDTO> _mapper;
+        public GetPersonCommand(IPersonRepository repository, IMapper<Person, PersonDTO> mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public Person Execute(int id)
+        public PersonDTO Execute(int id)
         {
-            return _repository.GetById(id);
+            return _mapper.Map(_repository.GetById(id));
         }
     }
 }

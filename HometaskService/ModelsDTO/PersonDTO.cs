@@ -1,8 +1,7 @@
-﻿namespace HometaskService.Models
+﻿namespace HometaskService.ModelsDTO
 {
-    public class Person
+    public class PersonDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }

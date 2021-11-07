@@ -1,5 +1,9 @@
 using HometaskService.Commands;
 using HometaskService.Commands.Interfaces;
+using HometaskService.Mappers;
+using HometaskService.Mappers.Interfaces;
+using HometaskService.Models;
+using HometaskService.ModelsDTO;
 using HometaskService.Repositories;
 using HometaskService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -24,19 +28,25 @@ namespace HometaskService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMemoryCache();
+
             services.AddSingleton<List<string>>();
+
             services.AddTransient<IPersonRepository, PersonRepository>();
             services.AddTransient<IGetPersonCommand, GetPersonCommand>();
             services.AddTransient<IDeletePersonCommand, DeletePersonCommand>();
             services.AddTransient<IGetAllPersonsCommand, GetAllPersonsCommand>();
             services.AddTransient<ICreatePersonCommand, CreatePersonCommand>();
             services.AddTransient<IUpdatePersonCommand, UpdatePersonCommand>();
+
             services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<IGetCarCommand, GetCarCommand>();
             services.AddTransient<IDeleteCarCommand, DeleteCarCommand>();
             services.AddTransient<IGetAllCarsCommand, GetAllCarsCommand>();
             services.AddTransient<ICreateCarCommand, CreateCarCommand>();
             services.AddTransient<IUpdateCarCommand, UpdateCarCommand>();
+
+            services.AddTransient<IMapper<Person, PersonDTO>, PersonMapper>();
+            services.AddTransient<IMapper<Car, CarDTO>, CarMapper>();
 
             services.AddControllers();
         }

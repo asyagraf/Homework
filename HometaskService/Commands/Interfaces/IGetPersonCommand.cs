@@ -1,9 +1,9 @@
-﻿using HometaskService.Models;
+﻿using HometaskService.ModelsDTO;
 
 namespace HometaskService.Commands.Interfaces
 {
     public interface IGetPersonCommand
     {
-        Person Execute(int id);
+        PersonDTO Execute(int id);
     }
 }

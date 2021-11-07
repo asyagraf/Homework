@@ -1,13 +1,9 @@
 ﻿using HometaskService.Commands.Interfaces;
 using HometaskService.Models;
-using HometaskService.Repositories;
+using HometaskService.ModelsDTO;
 using HometaskService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HometaskService.Controllers
 {
@@ -15,21 +11,14 @@ namespace HometaskService.Controllers
     [Route("[controller]")]
     public class CarController : ControllerBase
     {
-        private ICarRepository carRepository;
-
-        public CarController(ICarRepository carRepository)
-        {
-            this.carRepository = carRepository;
-        }
-
         [HttpGet("one")]
-        public Car Get([FromServices] IGetCarCommand command, [FromQuery] string number)
+        public CarDTO Get([FromServices] IGetCarCommand command, [FromQuery] string number)
         {
             return command.Execute(number);
         }
 
         [HttpGet("all")]
-        public List<Car> GetAll([FromServices] IGetAllCarsCommand command)
+        public List<CarDTO> GetAll([FromServices] IGetAllCarsCommand command)
         {
             return command.Execute();
         }

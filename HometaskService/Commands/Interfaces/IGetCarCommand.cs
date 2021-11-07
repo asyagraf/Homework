@@ -1,9 +1,9 @@
-﻿using HometaskService.Models;
+﻿using HometaskService.ModelsDTO;
 
 namespace HometaskService.Commands.Interfaces
 {
     public interface IGetCarCommand
     {
-        Car Execute(string number);
+        CarDTO Execute(string number);
     }
 }

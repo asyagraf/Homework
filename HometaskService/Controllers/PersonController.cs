@@ -1,6 +1,7 @@
 ﻿using HometaskService.Commands;
 using HometaskService.Commands.Interfaces;
 using HometaskService.Models;
+using HometaskService.ModelsDTO;
 using HometaskService.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -12,13 +13,13 @@ namespace HometaskService.Controllers
     public class PersonController : ControllerBase
     {
         [HttpGet("one")]
-        public Person Get([FromServices] IGetPersonCommand command,[FromQuery] int id)
+        public PersonDTO Get([FromServices] IGetPersonCommand command,[FromQuery] int id)
         {
             return command.Execute(id);
         }
 
         [HttpGet("all")]
-        public List<Person> GetAll([FromServices] IGetAllPersonsCommand command)
+        public List<PersonDTO> GetAll([FromServices] IGetAllPersonsCommand command)
         {
             return command.Execute();
         }
