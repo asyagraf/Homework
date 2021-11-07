@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HometaskService.Repositories.Interfaces
 {
-    internal interface IPersonRepository
+    public interface IPersonRepository
     {
         string GetById(int id);
         List<string> GetAll();

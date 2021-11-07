@@ -1,12 +1,9 @@
-﻿using HometaskService.Models;
+﻿using HometaskService.Commands;
+using HometaskService.Commands.Interfaces;
+using HometaskService.Models;
 using HometaskService.Repositories;
-using HometaskService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HometaskService.Controllers
 {
@@ -14,41 +11,39 @@ namespace HometaskService.Controllers
     [Route("[controller]")]
     public class PersonController : ControllerBase
     {
-        private IPersonRepository personRepository;
-        public PersonController()
-        {
-            personRepository = new PersonRepository();
-        }
-
-
         [HttpGet("one")]
         public string Get([FromQuery] int id)
         {
-            return personRepository.GetById(id);
+            IGetPersonCommand command = new GetPersonCommand(new PersonRepository());
+            return command.Execute(id);
         }
 
         [HttpGet("all")]
         public List<string> GetAll()
         {
-            return personRepository.GetAll();
+            IGetAllPersonsCommand command = new GetAllPersonsCommand(new PersonRepository());
+            return command.Execute();
         }
 
         [HttpPost]
         public void Create([FromBody] Person person)
         {
-            personRepository.Create(person);
+            ICreatePersonCommand command = new CreatePersonCommand(new PersonRepository());
+            command.Execute(person);
         }
 
         [HttpPut]
         public void Update([FromBody] Person person)
         {
-            personRepository.Update(person);
+            IUpdatePersonCommand command = new UpdatePersonCommand(new PersonRepository());
+            command.Execute(person);
         }
 
         [HttpDelete]
         public void Delete([FromQuery] int id)
         {
-            personRepository.Delete(id);
+            IDeletePersonCommand command = new DeletePersonCommand(new PersonRepository());
+            command.Execute(id);
         }
     }
 }

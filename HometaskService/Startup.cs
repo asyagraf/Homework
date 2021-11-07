@@ -1,3 +1,6 @@
+using HometaskService.Commands;
+using HometaskService.Repositories;
+using HometaskService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +30,7 @@ namespace HometaskService
         {
             services.AddSingleton<IMemoryCache, MemoryCache>();
             services.AddSingleton<List<string>>();
+            services.AddTransient<IPersonRepository, PersonRepository>();
 
             services.AddControllers();
         }
