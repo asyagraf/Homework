@@ -12,30 +12,26 @@ namespace HometaskService.Controllers
     public class PersonController : ControllerBase
     {
         [HttpGet("one")]
-        public Person Get([FromQuery] int id)
+        public Person Get([FromServices] IGetPersonCommand command,[FromQuery] int id)
         {
-            IGetPersonCommand command = new GetPersonCommand(new PersonRepository());
             return command.Execute(id);
         }
 
         [HttpGet("all")]
-        public List<Person> GetAll()
+        public List<Person> GetAll([FromServices] IGetAllPersonsCommand command)
         {
-            IGetAllPersonsCommand command = new GetAllPersonsCommand(new PersonRepository());
             return command.Execute();
         }
 
         [HttpPost]
-        public void Create([FromBody] Person person)
+        public void Create([FromServices] ICreatePersonCommand command, [FromBody] Person person)
         {
-            ICreatePersonCommand command = new CreatePersonCommand(new PersonRepository());
             command.Execute(person);
         }
 
         [HttpPut]
-        public void Update([FromBody] Person person)
+        public void Update([FromServices] IUpdatePersonCommand command, [FromBody] Person person)
         {
-            IUpdatePersonCommand command = new UpdatePersonCommand(new PersonRepository());
             command.Execute(person);
         }
 

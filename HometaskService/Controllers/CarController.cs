@@ -1,4 +1,5 @@
-﻿using HometaskService.Models;
+﻿using HometaskService.Commands.Interfaces;
+using HometaskService.Models;
 using HometaskService.Repositories;
 using HometaskService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -16,39 +17,39 @@ namespace HometaskService.Controllers
     {
         private ICarRepository carRepository;
 
-        public CarController(IMemoryCache cache, List<string> keys)
+        public CarController(ICarRepository carRepository)
         {
-            carRepository = new CarRepository(cache, keys);
+            this.carRepository = carRepository;
         }
 
         [HttpGet("one")]
-        public Car Get([FromQuery] string number)
+        public Car Get([FromServices] IGetCarCommand command, [FromQuery] string number)
         {
-            return carRepository.GetByNumber(number);
+            return command.Execute(number);
         }
 
         [HttpGet("all")]
-        public List<Car> GetAll()
+        public List<Car> GetAll([FromServices] IGetAllCarsCommand command)
         {
-            return carRepository.GetAll();
+            return command.Execute();
         }
 
         [HttpPost]
-        public void Create([FromBody] Car car)
+        public void Create([FromServices] ICreateCarCommand command, [FromBody] Car car)
         {
-            carRepository.Create(car);
+            command.Execute(car);
         }
 
         [HttpPut]
-        public void Update([FromBody] Car car)
+        public void Update([FromServices] IUpdateCarCommand command, [FromBody] Car car)
         {
-            carRepository.Update(car);
+            command.Execute(car);
         }
 
         [HttpDelete]
-        public void Delete([FromQuery] string number)
+        public void Delete([FromServices] IDeleteCarCommand command, [FromQuery] string number)
         {
-            carRepository.Delete(number);
+            command.Execute(number);
         }
     }
 }

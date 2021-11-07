@@ -10,7 +10,7 @@ namespace HometaskService.Repositories
 {
     public class PersonRepository: IPersonRepository
     {
-        private readonly string Path = @"C:\ServiceTest\Persons.txt";
+        private const string Path = "C:\\ServiceTest\\Persons.txt";
         private string[] line = new string[4];
 
         public void Create(Person person)

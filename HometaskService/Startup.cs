@@ -1,18 +1,13 @@
 using HometaskService.Commands;
+using HometaskService.Commands.Interfaces;
 using HometaskService.Repositories;
 using HometaskService.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HometaskService
 {
@@ -31,6 +26,17 @@ namespace HometaskService
             services.AddMemoryCache();
             services.AddSingleton<List<string>>();
             services.AddTransient<IPersonRepository, PersonRepository>();
+            services.AddTransient<IGetPersonCommand, GetPersonCommand>();
+            services.AddTransient<IDeletePersonCommand, DeletePersonCommand>();
+            services.AddTransient<IGetAllPersonsCommand, GetAllPersonsCommand>();
+            services.AddTransient<ICreatePersonCommand, CreatePersonCommand>();
+            services.AddTransient<IUpdatePersonCommand, UpdatePersonCommand>();
+            services.AddTransient<ICarRepository, CarRepository>();
+            services.AddTransient<IGetCarCommand, GetCarCommand>();
+            services.AddTransient<IDeleteCarCommand, DeleteCarCommand>();
+            services.AddTransient<IGetAllCarsCommand, GetAllCarsCommand>();
+            services.AddTransient<ICreateCarCommand, CreateCarCommand>();
+            services.AddTransient<IUpdateCarCommand, UpdateCarCommand>();
 
             services.AddControllers();
         }
