@@ -35,15 +35,14 @@ namespace HometaskService.Repositories
             }
         }
 
-        public List<string> GetAll()
+        public List<Car> GetAll()
         {
-            List<string> cars = new List<string>();
+            List<Car> cars = new List<Car>();
             foreach (string key in _keys)
             {
                 try
                 {
-                    Car car = (Car)_cache.Get(key);
-                    cars.Add($"Brand: {car.Brand}   Model: {car.Model}   Number: {car.Number}");
+                    cars.Add((Car)_cache.Get(key));
                 }
                 catch (Exception exc)
                 {
@@ -53,21 +52,21 @@ namespace HometaskService.Repositories
             return cars;
         }
 
-        public string GetByNumber(string number)
+        public Car GetByNumber(string number)
         {
             if (_cache.Get(number) is not null)
             {
                 try
                 {
                     Car car = (Car)_cache.Get(number);
-                    return $"Brand: {car.Brand}\nModel: {car.Model}\nNumber: {number}";
+                    return (Car)_cache.Get(number);
                 }
                 catch (Exception exc)
                 {
                     Console.WriteLine(exc.Message);
                 }
             }
-            return "This car doesn't exist";
+            return null;
         }
 
         public void Update(Car car)

@@ -22,13 +22,13 @@ namespace HometaskService.Controllers
         }
 
         [HttpGet("one")]
-        public string Get([FromQuery] string number)
+        public Car Get([FromQuery] string number)
         {
             return carRepository.GetByNumber(number);
         }
 
         [HttpGet("all")]
-        public List<string> GetAll()
+        public List<Car> GetAll()
         {
             return carRepository.GetAll();
         }
