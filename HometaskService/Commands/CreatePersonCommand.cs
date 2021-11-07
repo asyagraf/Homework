@@ -6,8 +6,8 @@ namespace HometaskService.Commands
 {
     public class CreatePersonCommand : ICreatePersonCommand
     {
-        private readonly IPersonRepository _repository;
-        public CreatePersonCommand(IPersonRepository repository)
+        private readonly IRepository<Person, int> _repository;
+        public CreatePersonCommand(IRepository<Person, int> repository)
         {
             _repository = repository;
         }

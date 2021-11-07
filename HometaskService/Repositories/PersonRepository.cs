@@ -3,12 +3,10 @@ using HometaskService.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HometaskService.Repositories
 {
-    public class PersonRepository: IPersonRepository
+    public class PersonRepository: IRepository<Person, int>
     {
         private const string Path = "C:\\ServiceTest\\Persons.txt";
         private string[] line = new string[4];
@@ -90,7 +88,7 @@ namespace HometaskService.Repositories
             return result;
         }
 
-        public Person GetById(int id)
+        public Person Get(int id)
         {
             Person person = null;
             if (File.Exists(Path))

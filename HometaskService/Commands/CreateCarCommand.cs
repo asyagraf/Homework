@@ -6,8 +6,9 @@ namespace HometaskService.Commands
 {
     public class CreateCarCommand : ICreateCarCommand
     {
-        private readonly ICarRepository _repository;
-        public CreateCarCommand(ICarRepository repository)
+        private readonly IRepository<Car, string> _repository;
+
+        public CreateCarCommand(IRepository<Car, string> repository)
         {
             _repository = repository;
         }

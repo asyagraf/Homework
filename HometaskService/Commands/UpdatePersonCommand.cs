@@ -6,8 +6,8 @@ namespace HometaskService.Commands
 {
     public class UpdatePersonCommand : IUpdatePersonCommand
     {
-        private readonly IPersonRepository _repository;
-        public UpdatePersonCommand(IPersonRepository repository)
+        private readonly IRepository<Person, int> _repository;
+        public UpdatePersonCommand(IRepository<Person, int> repository)
         {
             _repository = repository;
         }

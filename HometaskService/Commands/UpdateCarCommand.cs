@@ -6,8 +6,8 @@ namespace HometaskService.Commands
 {
     public class UpdateCarCommand : IUpdateCarCommand
     {
-        private readonly ICarRepository _repository;
-        public UpdateCarCommand(ICarRepository repository)
+        private readonly IRepository<Car, string> _repository;
+        public UpdateCarCommand(IRepository<Car, string> repository)
         {
             _repository = repository;
         }

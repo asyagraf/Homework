@@ -8,9 +8,9 @@ namespace HometaskService.Commands
 {
     public class GetCarCommand : IGetCarCommand
     {
-        private readonly ICarRepository _repository;
+        private readonly IRepository<Car, string> _repository;
         private readonly IMapper<Car, CarDTO> _mapper;
-        public GetCarCommand(ICarRepository repository, IMapper<Car, CarDTO> mapper)
+        public GetCarCommand(IRepository<Car, string> repository, IMapper<Car, CarDTO> mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -18,7 +18,7 @@ namespace HometaskService.Commands
 
         public CarDTO Execute(string number)
         {
-            return _mapper.Map(_repository.GetByNumber(number));
+            return _mapper.Map(_repository.Get(number));
         }
     }
 }

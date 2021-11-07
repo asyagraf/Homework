@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HometaskService.Commands.Interfaces
+﻿namespace HometaskService.Commands.Interfaces
 {
     public interface IDeleteCarCommand
     {

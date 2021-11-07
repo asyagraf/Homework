@@ -10,9 +10,9 @@ namespace HometaskService.Commands
 {
     public class GetAllCarsCommand : IGetAllCarsCommand
     {
-        private readonly ICarRepository _repository;
+        private readonly IRepository<Car, string> _repository;
         private readonly IMapper<Car, CarDTO> _mapper;
-        public GetAllCarsCommand(ICarRepository repository, IMapper<Car, CarDTO> mapper)
+        public GetAllCarsCommand(IRepository<Car, string> repository, IMapper<Car, CarDTO> mapper)
         {
             _repository = repository;
             _mapper = mapper;

@@ -8,9 +8,9 @@ namespace HometaskService.Commands
 {
     public class GetPersonCommand : IGetPersonCommand
     {
-        private readonly IPersonRepository _repository;
+        private readonly IRepository<Person, int> _repository;
         private readonly IMapper<Person, PersonDTO> _mapper;
-        public GetPersonCommand(IPersonRepository repository, IMapper<Person, PersonDTO> mapper)
+        public GetPersonCommand(IRepository<Person, int> repository, IMapper<Person, PersonDTO> mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -18,7 +18,7 @@ namespace HometaskService.Commands
 
         public PersonDTO Execute(int id)
         {
-            return _mapper.Map(_repository.GetById(id));
+            return _mapper.Map(_repository.Get(id));
         }
     }
 }

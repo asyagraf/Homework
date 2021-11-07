@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace HometaskService.Repositories
 {
-    public class CarRepository : ICarRepository
+    public class CarRepository : IRepository<Car, string>
     {
         private IMemoryCache _cache;
         private List<string> _keys;
@@ -52,7 +52,7 @@ namespace HometaskService.Repositories
             return cars;
         }
 
-        public Car GetByNumber(string number)
+        public Car Get(string number)
         {
             if (_cache.Get(number) is not null)
             {

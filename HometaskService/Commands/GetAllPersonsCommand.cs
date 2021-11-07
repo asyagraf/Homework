@@ -10,9 +10,9 @@ namespace HometaskService.Commands
 {
     public class GetAllPersonsCommand : IGetAllPersonsCommand
     {
-        private readonly IPersonRepository _repository;
+        private readonly IRepository<Person, int> _repository;
         private readonly IMapper<Person, PersonDTO> _mapper;
-        public GetAllPersonsCommand(IPersonRepository repository, IMapper<Person, PersonDTO> mapper)
+        public GetAllPersonsCommand(IRepository<Person, int> repository, IMapper<Person, PersonDTO> mapper)
         {
             _repository = repository;
             _mapper = mapper;

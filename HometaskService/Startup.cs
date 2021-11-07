@@ -31,14 +31,14 @@ namespace HometaskService
 
             services.AddSingleton<List<string>>();
 
-            services.AddTransient<IPersonRepository, PersonRepository>();
+            services.AddTransient<IRepository<Person, int>, PersonRepository>();
             services.AddTransient<IGetPersonCommand, GetPersonCommand>();
             services.AddTransient<IDeletePersonCommand, DeletePersonCommand>();
             services.AddTransient<IGetAllPersonsCommand, GetAllPersonsCommand>();
             services.AddTransient<ICreatePersonCommand, CreatePersonCommand>();
             services.AddTransient<IUpdatePersonCommand, UpdatePersonCommand>();
 
-            services.AddTransient<ICarRepository, CarRepository>();
+            services.AddTransient<IRepository<Car, string>, CarRepository>();
             services.AddTransient<IGetCarCommand, GetCarCommand>();
             services.AddTransient<IDeleteCarCommand, DeleteCarCommand>();
             services.AddTransient<IGetAllCarsCommand, GetAllCarsCommand>();
