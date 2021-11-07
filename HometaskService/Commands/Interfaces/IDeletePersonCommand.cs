@@ -2,8 +2,8 @@
 
 namespace HometaskService.Commands.Interfaces
 {
-    public interface IGetPersonCommand
+    public interface IDeletePersonCommand
     {
-        string Execute(int id);
+        void Execute(int id);
     }
 }

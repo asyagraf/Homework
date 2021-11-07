@@ -1,4 +1,5 @@
 ﻿using HometaskService.Commands.Interfaces;
+using HometaskService.Models;
 using HometaskService.Repositories.Interfaces;
 
 namespace HometaskService.Commands
@@ -11,7 +12,7 @@ namespace HometaskService.Commands
             _repository = repository;
         }
 
-        public string Execute(int id)
+        public Person Execute(int id)
         {
             return _repository.GetById(id);
         }

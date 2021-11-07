@@ -1,9 +1,9 @@
-﻿using System;
+﻿using HometaskService.Models;
 
 namespace HometaskService.Commands.Interfaces
 {
-    public interface IDeletePersonCommand
+    public interface IGetPersonCommand
     {
-        void Execute(int id);
+        Person Execute(int id);
     }
 }

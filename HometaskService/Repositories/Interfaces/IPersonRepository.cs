@@ -8,8 +8,8 @@ namespace HometaskService.Repositories.Interfaces
 {
     public interface IPersonRepository
     {
-        string GetById(int id);
-        List<string> GetAll();
+        Person GetById(int id);
+        List<Person> GetAll();
         void Create(Person person);
         void Update(Person person);
         void Delete(int id);

@@ -1,4 +1,5 @@
 ﻿using HometaskService.Commands.Interfaces;
+using HometaskService.Models;
 using HometaskService.Repositories.Interfaces;
 using System.Collections.Generic;
 
@@ -12,7 +13,7 @@ namespace HometaskService.Commands
             _repository = repository;
         }
 
-        public List<string> Execute()
+        public List<Person> Execute()
         {
             return _repository.GetAll();
         }

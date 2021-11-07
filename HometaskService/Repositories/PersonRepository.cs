@@ -15,9 +15,9 @@ namespace HometaskService.Repositories
 
         public void Create(Person person)
         {
-            if (!System.IO.File.Exists(Path))
+            if (!File.Exists(Path))
             {
-                System.IO.File.Create(Path).Close();
+                File.Create(Path).Close();
             }
 
             try
@@ -61,11 +61,11 @@ namespace HometaskService.Repositories
             }
         }
 
-        public List<string> GetAll()
+        public List<Person> GetAll()
         {
-            List<string> result = new List<string>();
+            List<Person> result = new List<Person>();
 
-            if (System.IO.File.Exists(Path))
+            if (File.Exists(Path))
             {
                 try
                 {
@@ -73,7 +73,13 @@ namespace HometaskService.Repositories
                     while (sr.Peek() != -1)
                     {
                         line = sr.ReadLine().Split('/');
-                        result.Add($"Name: {line[1]}   Surname: {line[2]}   Age: {line[3]}");
+                        result.Add(new Person()
+                        {
+                            Id = int.Parse(line[0]),
+                            Name = line[1],
+                            Surname = line[2],
+                            Age = int.Parse(line[3])
+                        });
                     }
                 }
                 catch (Exception exc)
@@ -84,9 +90,10 @@ namespace HometaskService.Repositories
             return result;
         }
 
-        public string GetById(int id)
+        public Person GetById(int id)
         {
-            if (System.IO.File.Exists(Path))
+            Person person = null;
+            if (File.Exists(Path))
             {
                 try
                 {
@@ -96,17 +103,22 @@ namespace HometaskService.Repositories
                         line = sr.ReadLine().Split('/');
                         if (line[0] == id.ToString())
                         {
-                            return $"Name: {line[1]}\nSurname: {line[2]}\nAge: {line[3]}";
+                            person = new Person()
+                            {
+                                Id = int.Parse(line[0]),
+                                Name = line[1],
+                                Surname = line[2],
+                                Age = int.Parse(line[3])
+                            };
                         }
                     }
-                    return "There is no person with this ID";
                 }
                 catch (Exception exc)
                 {
                     Console.WriteLine(exc.Message);
                 }
             }
-            return "There is no file with persons";
+            return person;
         }
 
         public void Update(Person person)

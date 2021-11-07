@@ -12,14 +12,14 @@ namespace HometaskService.Controllers
     public class PersonController : ControllerBase
     {
         [HttpGet("one")]
-        public string Get([FromQuery] int id)
+        public Person Get([FromQuery] int id)
         {
             IGetPersonCommand command = new GetPersonCommand(new PersonRepository());
             return command.Execute(id);
         }
 
         [HttpGet("all")]
-        public List<string> GetAll()
+        public List<Person> GetAll()
         {
             IGetAllPersonsCommand command = new GetAllPersonsCommand(new PersonRepository());
             return command.Execute();
