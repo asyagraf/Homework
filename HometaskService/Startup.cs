@@ -1,5 +1,6 @@
 using HometaskService.Commands;
 using HometaskService.Commands.Interfaces;
+using HometaskService.DBModels;
 using HometaskService.Mappers;
 using HometaskService.Mappers.Interfaces;
 using HometaskService.Models;
@@ -45,8 +46,16 @@ namespace HometaskService
             services.AddTransient<ICreateCarCommand, CreateCarCommand>();
             services.AddTransient<IUpdateCarCommand, UpdateCarCommand>();
 
+            services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IGetBookCommand, GetBookCommand>();
+            services.AddTransient<IDeleteBookCommand, DeleteBookCommand>();
+            services.AddTransient<IGetAllBooksCommand, GetAllBooksCommand>();
+            services.AddTransient<ICreateBookCommand, CreateBookCommand>();
+            services.AddTransient<IUpdateBookCommand, UpdateBookCommand>();
+
             services.AddTransient<IMapper<Person, PersonDTO>, PersonMapper>();
             services.AddTransient<IMapper<Car, CarDTO>, CarMapper>();
+            services.AddTransient<IMapper<DBBook, BookDTO>, BookMapper>();
 
             services.AddControllers();
         }
