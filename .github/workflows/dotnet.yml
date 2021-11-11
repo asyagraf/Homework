@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ hometask2 ]
+    branches: [ main ]
   pull_request:
-    branches: [ hometask2 ]
+    branches: [ main ]
 
 jobs:
   build:
