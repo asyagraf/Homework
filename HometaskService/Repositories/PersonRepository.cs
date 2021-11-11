@@ -1,4 +1,5 @@
-﻿using HometaskService.Models;
+﻿using HometaskService.Database;
+using HometaskService.Models;
 using HometaskService.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -62,6 +63,8 @@ namespace HometaskService.Repositories
         public List<Person> GetAll()
         {
             List<Person> result = new List<Person>();
+            var context = new HometaskServiceDbContext();
+
 
             if (File.Exists(Path))
             {
