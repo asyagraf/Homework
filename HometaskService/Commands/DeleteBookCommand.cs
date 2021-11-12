@@ -1,5 +1,4 @@
 ﻿using HometaskService.Commands.Interfaces;
-using HometaskService.DBModels;
 using HometaskService.Repositories.Interfaces;
 
 namespace HometaskService.Commands

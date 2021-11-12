@@ -7,11 +7,14 @@ using HometaskService.Models;
 using HometaskService.ModelsDTO;
 using HometaskService.Repositories;
 using HometaskService.Repositories.Interfaces;
+using HometaskService.Validation;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Collections.Generic;
 
 namespace HometaskService
@@ -28,9 +31,29 @@ namespace HometaskService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*services.AddMassTransit(cfg =>
+            {
+                cfg.UsingRabbitMq((content, factory) =>
+                {
+                    factory.Host("localhost", "/", hostCfg =>
+                    {
+                        hostCfg.Username("guest");
+                        hostCfg.Password("guest");
+                    });
+                });
+                cfg.AddRequestClient<ModelRequest>(new Uri("rabbitmq://localhost/get_model"));
+            });
+            services.AddMassTransitHostedService();*/
+
             services.AddMemoryCache();
 
             services.AddSingleton<List<string>>();
+            services.AddSingleton<BookValidator>();
+            services.AddSingleton<CarValidator>();
+            services.AddSingleton<PersonValidator>();
+            services.AddSingleton<DBBookValidator>();
+            //services.AddSingleton<ClientValidator>();
+            //services.AddSingleton<RentalCarValidator>();
 
             services.AddTransient<IRepository<Person, int>, PersonRepository>();
             services.AddTransient<IGetPersonCommand, GetPersonCommand>();
@@ -56,6 +79,8 @@ namespace HometaskService
             services.AddTransient<IMapper<Person, PersonDTO>, PersonMapper>();
             services.AddTransient<IMapper<Car, CarDTO>, CarMapper>();
             services.AddTransient<IMapper<DBBook, BookDTO>, BookMapper>();
+            services.AddTransient<IMapper<Client, ClientDTO>, ClientMapper>();
+            services.AddTransient<IMapper<RentalCar, RentalCarDTO>, RentalCarMapper>();
 
             services.AddControllers();
         }
