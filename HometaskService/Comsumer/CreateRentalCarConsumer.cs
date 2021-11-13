@@ -23,7 +23,7 @@ namespace HometaskService.Comsumer
         {
             var car = mapper.Map(context.Message);
             await repository.Create(car);
-            await context.RespondAsync("OK");
+            await context.RespondAsync(new CUDRentalCarResponse() { Result = "Created"});
         }
     }
 }

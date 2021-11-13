@@ -17,7 +17,7 @@ namespace HometaskService.Comsumer
         {
             var id = context.Message.Id;
             await repository.Delete(id);
-            await context.RespondAsync("OK");
+            await context.RespondAsync(new CUDRentalCarResponse() { Result = "Deleted" });
         }
     }
 }

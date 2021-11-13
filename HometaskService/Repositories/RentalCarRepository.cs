@@ -23,7 +23,7 @@ namespace HometaskService.Repositories
         {
             return await dbContext.RentalCars.ToListAsync();
         }
-
+        //с созданием справляется, если нет id клиента, которого нет
         public async Task Create(DbRentalCar car)
         {
             await dbContext.RentalCars.AddAsync(car);
@@ -33,19 +33,25 @@ namespace HometaskService.Repositories
         public async Task Delete(int id)
         {
             var car = await dbContext.RentalCars.FindAsync(id);
-            dbContext.RentalCars.Remove(car);
-            await dbContext.SaveChangesAsync();
+            if (car is not null)
+            {
+                dbContext.RentalCars.Remove(car);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task Update(DbRentalCar car)
         {
             var newCar = await dbContext.RentalCars.FindAsync(car.Id);
-            newCar.Number = car.Number;
-            newCar.IsAvailable = car.IsAvailable;
-            newCar.Brand = car.Brand;
-            newCar.Model = car.Model;
-            newCar.Mileage = car.Mileage;
-            newCar.ClientId = car.ClientId;
+            if (newCar is not null)
+            {
+                newCar.Number = car.Number;
+                newCar.IsAvailable = car.IsAvailable;
+                newCar.Brand = car.Brand;
+                newCar.Model = car.Model;
+                newCar.Mileage = car.Mileage;
+                newCar.ClientId = car.ClientId;
+            }
             await dbContext.SaveChangesAsync();
         }
     }

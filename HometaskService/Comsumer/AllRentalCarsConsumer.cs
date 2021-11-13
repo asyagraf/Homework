@@ -20,7 +20,8 @@ namespace HometaskService.Comsumer
         public async Task Consume(ConsumeContext<AllRentalCarsRequest> context)
         {
             var cars = await repository.GetAll();
-            await context.RespondAsync(cars.Select(car => mapper.Map(car)).ToList());
+            var result = cars.Select(car => mapper.Map(car)).ToList();
+            await context.RespondAsync(new AllRentalCarsResponse() {Cars = result});
         }
     }
 }

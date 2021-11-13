@@ -20,7 +20,25 @@ namespace HometaskService.Comsumer
         {
             var id = context.Message.Id;
             var car = await repository.GetById(id);
-            await context.RespondAsync(mapper.Map(car));
+            var carResp = mapper.Map(car);
+            //await context.RespondAsync(mapper.Map(car));
+            if (carResp is not null)
+            {
+                await context.RespondAsync(carResp);
+            }
+            else
+            {
+                //await context.RespondAsync(new RentalCarResponse()
+                //{
+                //    Number = "123QQQ",
+                //    IsAvailable = true,
+                //    Brand = "BMW",
+                //    Model = "X6",
+                //    Mileage = 200,
+                //    ClientId = null
+                //});
+                await context.RespondAsync(new RentalCarResponse());
+            }
         }
     }
 }
