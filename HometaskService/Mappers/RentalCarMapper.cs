@@ -1,25 +1,26 @@
-﻿using HometaskService.DBModels;
+﻿using CarRentalService.Request;
+using HometaskService.DBModels;
 using HometaskService.Mappers.Interfaces;
-using HometaskService.ModelsDTO;
 
 namespace HometaskService.Mappers
 {
-    public class RentalCarMapper : IMapper<RentalCar, RentalCarDTO>
+    public class RentalCarMapper : IMapper<DbRentalCar, RentalCarResponse>
     {
-        public RentalCarDTO Map(RentalCar rentalCar)
+        public RentalCarResponse Map(DbRentalCar car)
         {
-            if (rentalCar is null)
+            if (car is null)
             {
                 return null;
             }
 
-            return new RentalCarDTO()
+            return new RentalCarResponse()
             {
-                Number = rentalCar.Number,
-                IsAvailable = rentalCar.IsAvailable,
-                Brand = rentalCar.Brand,
-                Model = rentalCar.Model,
-                Mileage = rentalCar.Mileage
+                Number = car.Number,
+                IsAvailable = car.IsAvailable,
+                Brand = car.Brand,
+                Model = car.Model,
+                Mileage = car.Mileage,
+                ClientId = car.ClientId
             };
         }
     }

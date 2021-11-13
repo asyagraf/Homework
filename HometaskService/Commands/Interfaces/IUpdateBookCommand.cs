@@ -1,9 +1,10 @@
 ﻿using HometaskService.DBModels;
+using System.Threading.Tasks;
 
 namespace HometaskService.Commands.Interfaces
 {
     public interface IUpdateBookCommand
     {
-        void Execute(DBBook book);
+        Task ExecuteAsync(DBBook book);
     }
 }

@@ -9,8 +9,8 @@ namespace HometaskService.Commands
     public class UpdateCarCommand : IUpdateCarCommand
     {
         private readonly IRepository<Car, string> _repository;
-        private readonly CarValidator _validator;
-        public UpdateCarCommand(IRepository<Car, string> repository, CarValidator validator)
+        private readonly IValidator<Car> _validator;
+        public UpdateCarCommand(IRepository<Car, string> repository, IValidator<Car> validator)
         {
             _repository = repository;
             _validator = validator;

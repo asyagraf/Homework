@@ -3,7 +3,7 @@ using HometaskService.DBModels;
 
 namespace HometaskService.Validation
 {
-    public class DBBookValidator : AbstractValidator<DBBook>
+    public class DBBookValidator : AbstractValidator<DBBook>, IValidator<DBBook>
     {
         public DBBookValidator()
         {

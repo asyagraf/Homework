@@ -1,19 +1,19 @@
-﻿using HometaskService.DBModels;
+﻿using CarRentalService.Request;
+using HometaskService.DBModels;
 using HometaskService.Mappers.Interfaces;
-using HometaskService.ModelsDTO;
 
 namespace HometaskService.Mappers
 {
-    public class ClientMapper : IMapper<Client, ClientDTO>
+    public class ClientMapper : IMapper<DbClient, ClientResponse>
     {
-        public ClientDTO Map(Client client)
+        public ClientResponse Map(DbClient client)
         {
             if (client is null)
             {
                 return null;
             }
 
-            return new ClientDTO()
+            return new ClientResponse()
             {
                 FirstName = client.FirstName,
                 LastName = client.LastName,

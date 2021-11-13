@@ -1,7 +1,9 @@
-﻿namespace HometaskService.Commands.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace HometaskService.Commands.Interfaces
 {
     public interface IDeleteBookCommand
     {
-        void Execute(int id);
+        Task ExecuteAsync(int id);
     }
 }

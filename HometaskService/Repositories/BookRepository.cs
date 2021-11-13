@@ -4,17 +4,18 @@ using HometaskService.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace HometaskService.Repositories
 {
     public class BookRepository : IBookRepository
     {
         private const string connectionString = "Server=ASYAGRAFPC\\SQLEXPRESS;Database=DBBook;Trusted_Connection=True";
-        public void Create(BookDTO book)
+        public async Task Create(BookDTO book)
         {
             try
             {
-                using SqlConnection connection = new SqlConnection(connectionString);
+                await using SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
                 string query = $"INSERT INTO Books VALUES ('{book.Name}', '{book.Author}')";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -26,11 +27,11 @@ namespace HometaskService.Repositories
             }
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             try
             {
-                using SqlConnection connection = new SqlConnection(connectionString);
+                await using SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
                 string query = $"DELETE FROM Books WHERE Id = {id}";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -42,13 +43,13 @@ namespace HometaskService.Repositories
             }
         }
 
-        public DBBook Get(int id)
+        public async Task<DBBook> Get(int id)
         {
             DBBook book = null;
 
             try
             {
-                using SqlConnection connection = new SqlConnection(connectionString);
+                await using SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
                 string query = $"SELECT * FROM Books WHERE Id = {id}";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -69,13 +70,13 @@ namespace HometaskService.Repositories
             return book;
         }
 
-        public List<DBBook> GetAll()
+        public async Task<List<DBBook>> GetAll()
         {
             List<DBBook> books = new List<DBBook>();
 
             try
             {
-                using SqlConnection connection = new SqlConnection(connectionString);
+                await using SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
                 string query = $"SELECT * FROM Books";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -98,11 +99,11 @@ namespace HometaskService.Repositories
             return books;
         }
 
-        public void Update(DBBook book)
+        public async Task Update(DBBook book)
         {
             try
             {
-                using SqlConnection connection = new SqlConnection(connectionString);
+                await using SqlConnection connection = new SqlConnection(connectionString);
                 connection.Open();
                 string query = $"UPDATE Books SET Name = '{book.Name}', Author = '{book.Author}' WHERE Id = {book.Id}";
                 SqlCommand command = new SqlCommand(query, connection);

@@ -1,5 +1,6 @@
 ﻿using HometaskService.Commands.Interfaces;
 using HometaskService.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace HometaskService.Commands
 {
@@ -12,9 +13,9 @@ namespace HometaskService.Commands
             _repository = repository;
         }
 
-        public void Execute(int id)
+        public async Task ExecuteAsync(int id)
         {
-            _repository.Delete(id);
+            await _repository.Delete(id);
         }
     }
 }

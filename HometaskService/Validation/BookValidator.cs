@@ -3,7 +3,7 @@ using HometaskService.ModelsDTO;
 
 namespace HometaskService.Validation
 {
-    public class BookValidator : AbstractValidator<BookDTO>
+    public class BookValidator : AbstractValidator<BookDTO>, IValidator<BookDTO>
     {
         public BookValidator()
         {

@@ -9,9 +9,9 @@ namespace HometaskService.Commands
     public class CreateCarCommand : ICreateCarCommand
     {
         private readonly IRepository<Car, string> _repository;
-        private readonly CarValidator _validator;
+        private readonly IValidator<Car> _validator;
 
-        public CreateCarCommand(IRepository<Car, string> repository, CarValidator validator)
+        public CreateCarCommand(IRepository<Car, string> repository, IValidator<Car> validator)
         {
             _repository = repository;
             _validator = validator;

@@ -1,16 +1,15 @@
-﻿using HometaskService.Commands.Interfaces;
+﻿using FluentValidation;
+using HometaskService.Commands.Interfaces;
 using HometaskService.Models;
 using HometaskService.Repositories.Interfaces;
-using FluentValidation;
-using HometaskService.Validation;
 
 namespace HometaskService.Commands
 {
     public class UpdatePersonCommand : IUpdatePersonCommand
     {
         private readonly IRepository<Person, int> _repository;
-        private readonly PersonValidator _validator;
-        public UpdatePersonCommand(IRepository<Person, int> repository, PersonValidator validator)
+        private readonly IValidator<Person> _validator;
+        public UpdatePersonCommand(IRepository<Person, int> repository, IValidator<Person> validator)
         {
             _repository = repository;
             _validator = validator;

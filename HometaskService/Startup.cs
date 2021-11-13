@@ -1,5 +1,8 @@
+using CarRentalService.Request;
+using FluentValidation;
 using HometaskService.Commands;
 using HometaskService.Commands.Interfaces;
+using HometaskService.Comsumer;
 using HometaskService.DBModels;
 using HometaskService.Mappers;
 using HometaskService.Mappers.Interfaces;
@@ -41,19 +44,18 @@ namespace HometaskService
                         hostCfg.Password("guest");
                     });
                 });
-                cfg.AddRequestClient<ModelRequest>(new Uri("rabbitmq://localhost/get_model"));
+                cfg.AddConsumer<>();
             });
             services.AddMassTransitHostedService();*/
 
             services.AddMemoryCache();
 
             services.AddSingleton<List<string>>();
-            services.AddSingleton<BookValidator>();
-            services.AddSingleton<CarValidator>();
-            services.AddSingleton<PersonValidator>();
-            services.AddSingleton<DBBookValidator>();
-            //services.AddSingleton<ClientValidator>();
-            //services.AddSingleton<RentalCarValidator>();
+
+            services.AddTransient<IValidator<Person>, PersonValidator>();
+            services.AddTransient<IValidator<DBBook>, DBBookValidator>();
+            services.AddTransient<IValidator<BookDTO>, BookValidator>();
+            services.AddTransient<IValidator<Car>, CarValidator>();
 
             services.AddTransient<IRepository<Person, int>, PersonRepository>();
             services.AddTransient<IGetPersonCommand, GetPersonCommand>();
@@ -79,8 +81,8 @@ namespace HometaskService
             services.AddTransient<IMapper<Person, PersonDTO>, PersonMapper>();
             services.AddTransient<IMapper<Car, CarDTO>, CarMapper>();
             services.AddTransient<IMapper<DBBook, BookDTO>, BookMapper>();
-            services.AddTransient<IMapper<Client, ClientDTO>, ClientMapper>();
-            services.AddTransient<IMapper<RentalCar, RentalCarDTO>, RentalCarMapper>();
+            services.AddTransient<IMapper<DbClient, ClientResponse>, ClientMapper>();
+            services.AddTransient<IMapper<DbRentalCar, RentalCarResponse>, RentalCarMapper>();
 
             services.AddControllers();
         }

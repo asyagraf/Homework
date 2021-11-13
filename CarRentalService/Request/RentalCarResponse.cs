@@ -1,8 +1,7 @@
-﻿namespace HometaskService.DBModels
+﻿namespace CarRentalService.Request
 {
-    public class RentalCar
+    public class RentalCarResponse
     {
-        public int Id { get; set; }
         public string Number { get; set; }
         public bool IsAvailable { get; set; }
         public string Brand { get; set; }

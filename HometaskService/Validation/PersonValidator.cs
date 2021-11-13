@@ -3,7 +3,7 @@ using HometaskService.Models;
 
 namespace HometaskService.Validation
 {
-    public class PersonValidator : AbstractValidator<Person>
+    public class PersonValidator : AbstractValidator<Person>, IValidator<Person>
     {
         public PersonValidator()
         {

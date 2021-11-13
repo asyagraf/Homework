@@ -5,6 +5,7 @@ using HometaskService.ModelsDTO;
 using HometaskService.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HometaskService.Commands
 {
@@ -18,9 +19,10 @@ namespace HometaskService.Commands
             _mapper = mapper;
         }
 
-        public List<BookDTO> Execute()
+        public async Task<List<BookDTO>> ExecuteAsync()
         {
-            return _repository.GetAll().Select(book => _mapper.Map(book)).ToList();
+            List<DBBook> books = await _repository.GetAll();
+            return books.Select(book => _mapper.Map(book)).ToList();
         }
     }
 }

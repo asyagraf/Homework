@@ -3,6 +3,7 @@ using HometaskService.DBModels;
 using HometaskService.ModelsDTO;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace HometaskService.Controllers
 {
@@ -11,33 +12,33 @@ namespace HometaskService.Controllers
     public class BookController : ControllerBase
     {
         [HttpGet("one")]
-        public BookDTO Get([FromServices] IGetBookCommand command, [FromQuery] int id)
+        public async Task<BookDTO> Get([FromServices] IGetBookCommand command, [FromQuery] int id)
         {
-            return command.Execute(id);
+            return await command.ExecuteAsync(id);
         }
 
         [HttpGet("all")]
-        public List<BookDTO> GetAll([FromServices] IGetAllBooksCommand command)
+        public async Task<List<BookDTO>> GetAll([FromServices] IGetAllBooksCommand command)
         {
-            return command.Execute();
+            return await command.ExecuteAsync();
         }
 
         [HttpPost]
-        public void Create([FromServices] ICreateBookCommand command, [FromBody] BookDTO book)
+        public async Task Create([FromServices] ICreateBookCommand command, [FromBody] BookDTO book)
         {
-            command.Execute(book);
+            await command.ExecuteAsync(book);
         }
 
         [HttpPut]
-        public void Update([FromServices] IUpdateBookCommand command, [FromBody] DBBook book)
+        public async Task Update([FromServices] IUpdateBookCommand command, [FromBody] DBBook book)
         {
-            command.Execute(book);
+            await command.ExecuteAsync(book);
         }
 
         [HttpDelete]
-        public void Delete([FromServices] IDeleteBookCommand command, [FromQuery] int id)
+        public async Task Delete([FromServices] IDeleteBookCommand command, [FromQuery] int id)
         {
-            command.Execute(id);
+            await command.ExecuteAsync(id);
         }
     }
 }

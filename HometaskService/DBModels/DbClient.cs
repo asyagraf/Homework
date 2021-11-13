@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HometaskService.DBModels
 {
-    internal class DbClient
+    public class DbClient
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

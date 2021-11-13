@@ -3,6 +3,7 @@ using HometaskService.DBModels;
 using HometaskService.Mappers.Interfaces;
 using HometaskService.ModelsDTO;
 using HometaskService.Repositories.Interfaces;
+using System.Threading.Tasks;
 
 namespace HometaskService.Commands
 {
@@ -16,9 +17,10 @@ namespace HometaskService.Commands
             _mapper = mapper;
         }
 
-        public BookDTO Execute(int id)
+        public async Task<BookDTO> ExecuteAsync(int id)
         {
-            return _mapper.Map(_repository.Get(id));
+            DBBook book = await _repository.Get(id);
+            return _mapper.Map(book);
         }
     }
 }

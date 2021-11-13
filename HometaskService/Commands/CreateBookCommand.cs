@@ -2,27 +2,27 @@
 using HometaskService.Commands.Interfaces;
 using HometaskService.ModelsDTO;
 using HometaskService.Repositories.Interfaces;
-using HometaskService.Validation;
+using System.Threading.Tasks;
 
 namespace HometaskService.Commands
 {
     public class CreateBookCommand : ICreateBookCommand
     {
         private readonly IBookRepository _repository;
-        private readonly BookValidator _validator;
+        private readonly IValidator<BookDTO> _validator;
 
-        public CreateBookCommand(IBookRepository repository, BookValidator validator)
+        public CreateBookCommand(IBookRepository repository, IValidator<BookDTO> validator)
         {
             _repository = repository;
             _validator = validator;
         }
 
-        public void Execute(BookDTO book)
+        public async Task ExecuteAsync(BookDTO book)
         {
             try
             {
                 _validator.ValidateAndThrow(book);
-                _repository.Create(book);
+                await _repository.Create(book);
             }
             catch
             {

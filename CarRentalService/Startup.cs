@@ -33,7 +33,7 @@ namespace CarRentalService
                     factory.ReceiveEndpoint("get_model", configuration =>
                     configuration.ConfigureConsumer<ModelConsumer>(content));
                 });
-                cfg.AddConsumer<ModelConsumer>();
+                cfg.AddRequestClient<ModelRequest>(new Uri("rabbitmq://localhost/get_model"));
             });
             services.AddMassTransitHostedService();*/
 
