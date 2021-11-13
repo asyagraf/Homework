@@ -17,7 +17,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Collections.Generic;
 
 namespace HometaskService
@@ -45,8 +44,24 @@ namespace HometaskService
                     });
                     factory.ReceiveEndpoint("get_rentalcar", configuration =>
                     configuration.ConfigureConsumer<RentalCarConsumer>(context));
+
+                    factory.ReceiveEndpoint("get_all_rentalcars", configuration =>
+                    configuration.ConfigureConsumer<AllRentalCarsConsumer>(context));
+
+                    factory.ReceiveEndpoint("delete_rentalcar", configuration =>
+                    configuration.ConfigureConsumer<DeleteRentalCarConsumer>(context));
+
+                    factory.ReceiveEndpoint("create_rentalcar", configuration =>
+                    configuration.ConfigureConsumer<CreateRentalCarConsumer>(context));
+
+                    factory.ReceiveEndpoint("update_rentalcar", configuration =>
+                    configuration.ConfigureConsumer<UpdateRentalCarConsumer>(context));
                 });
                 cfg.AddConsumer<RentalCarConsumer>();
+                cfg.AddConsumer<AllRentalCarsConsumer>();
+                cfg.AddConsumer<DeleteRentalCarConsumer>();
+                cfg.AddConsumer<CreateRentalCarConsumer>();
+                cfg.AddConsumer<UpdateRentalCarConsumer>();
             });
             services.AddMassTransitHostedService();
 
@@ -58,6 +73,13 @@ namespace HometaskService
             services.AddTransient<IValidator<DBBook>, DBBookValidator>();
             services.AddTransient<IValidator<BookDTO>, BookValidator>();
             services.AddTransient<IValidator<Car>, CarValidator>();
+
+            services.AddTransient<IRentalRepository<DbRentalCar>, RentalCarRepository>();
+            services.AddTransient<IRentalRepository<DbClient>, ClientRepository>();
+            services.AddTransient<IMapper<DbRentalCar, RentalCarResponse>, RentalCarMapper>();
+            services.AddTransient<IMapper<DbClient, ClientResponse>, ClientMapper>();
+            services.AddTransient<IMapper<UpdateRentalCarRequest, DbRentalCar>, UpdateRentalCarMapper>();
+            services.AddTransient<IMapper<CreateRentalCarRequest, DbRentalCar>, CreateRentalCarMapper>();
 
             services.AddTransient<IRepository<Person, int>, PersonRepository>();
             services.AddTransient<IGetPersonCommand, GetPersonCommand>();

@@ -19,7 +19,7 @@ namespace HometaskService.Repositories
                 connection.Open();
                 string query = $"INSERT INTO Books VALUES ('{book.Name}', '{book.Author}')";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception exc)
             {
@@ -35,7 +35,7 @@ namespace HometaskService.Repositories
                 connection.Open();
                 string query = $"DELETE FROM Books WHERE Id = {id}";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception exc)
             {
@@ -53,7 +53,7 @@ namespace HometaskService.Repositories
                 connection.Open();
                 string query = $"SELECT * FROM Books WHERE Id = {id}";
                 SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = await command.ExecuteReaderAsync();
                 reader.Read();
                 book = new DBBook()
                 {
@@ -80,7 +80,7 @@ namespace HometaskService.Repositories
                 connection.Open();
                 string query = $"SELECT * FROM Books";
                 SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
+                SqlDataReader reader = await command.ExecuteReaderAsync();
                 while (reader.Read())
                 {
                     books.Add(new DBBook()
@@ -107,7 +107,7 @@ namespace HometaskService.Repositories
                 connection.Open();
                 string query = $"UPDATE Books SET Name = '{book.Name}', Author = '{book.Author}' WHERE Id = {book.Id}";
                 SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             catch (Exception exc)
             {

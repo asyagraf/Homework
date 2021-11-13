@@ -1,49 +1,52 @@
 ﻿using HometaskService.Database;
 using HometaskService.DBModels;
+using HometaskService.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace HometaskService.Repositories
 {
-    public class RentalCarRepository
+    public class RentalCarRepository : IRentalRepository<DbRentalCar>
     {
         private readonly HometaskServiceDbContext dbContext;
         public RentalCarRepository()
         {
             dbContext = new HometaskServiceDbContext();
         }
-        public DbRentalCar GetById(int id)
+        public async Task<DbRentalCar> GetById(int id)
         {
-            return dbContext.RentalCars.Find(id);
+            return await dbContext.RentalCars.FindAsync(id);
         }
 
-        public List<DbRentalCar> GetAll()
+        public async Task<List<DbRentalCar>> GetAll()
         {
-            return dbContext.RentalCars.ToList();
+            return await dbContext.RentalCars.ToListAsync();
         }
 
-        public void Create(DbRentalCar car)
+        public async Task Create(DbRentalCar car)
         {
-            dbContext.RentalCars.Add(car);
-            dbContext.SaveChanges();
+            await dbContext.RentalCars.AddAsync(car);
+            await dbContext.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            dbContext.RentalCars.Remove(GetById(id));
-            dbContext.SaveChanges();
+            var car = await dbContext.RentalCars.FindAsync(id);
+            dbContext.RentalCars.Remove(car);
+            await dbContext.SaveChangesAsync();
         }
 
-        public void Update(DbRentalCar car)
+        public async Task Update(DbRentalCar car)
         {
-            var newCar = dbContext.RentalCars.Find(car.Id);
+            var newCar = await dbContext.RentalCars.FindAsync(car.Id);
             newCar.Number = car.Number;
             newCar.IsAvailable = car.IsAvailable;
             newCar.Brand = car.Brand;
             newCar.Model = car.Model;
             newCar.Mileage = car.Mileage;
             newCar.ClientId = car.ClientId;
-            dbContext.SaveChanges();
+            await dbContext.SaveChangesAsync();
         }
     }
 }

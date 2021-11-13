@@ -10,9 +10,9 @@ namespace CarRentalService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class RentalCarController : ControllerBase
+    public class ClientController : ControllerBase
     {
-        public RentalCarController()
+        public ClientController()
         {
 
         }

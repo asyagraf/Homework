@@ -33,6 +33,10 @@ namespace CarRentalService
                     });
                 });
                 cfg.AddRequestClient<RentalCarRequest>(new Uri("rabbitmq://localhost/get_rentalcar"));
+                cfg.AddRequestClient<AllRentalCarsRequest>(new Uri("rabbitmq://localhost/get_all_rentalcars"));
+                cfg.AddRequestClient<CreateRentalCarRequest>(new Uri("rabbitmq://localhost/create_rentalcar"));
+                cfg.AddRequestClient<DeleteRentalCarRequest>(new Uri("rabbitmq://localhost/delete_rentalcar"));
+                cfg.AddRequestClient<UpdateRentalCarRequest>(new Uri("rabbitmq://localhost/update_rentalcar"));
             });
             services.AddMassTransitHostedService();
 
