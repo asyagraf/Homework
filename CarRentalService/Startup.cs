@@ -1,3 +1,4 @@
+using CarRentalService.Request;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,21 +22,19 @@ namespace CarRentalService
         public void ConfigureServices(IServiceCollection services)
         {
 
-            /*services.AddMassTransit(cfg =>
+            services.AddMassTransit(cfg =>
             {
-                cfg.UsingRabbitMq((content, factory) =>
+                cfg.UsingRabbitMq((context, factory) =>
                 {
                     factory.Host("localhost", "/", hostCfg =>
                     {
                         hostCfg.Username("guest");
                         hostCfg.Password("guest");
                     });
-                    factory.ReceiveEndpoint("get_model", configuration =>
-                    configuration.ConfigureConsumer<ModelConsumer>(content));
                 });
-                cfg.AddRequestClient<ModelRequest>(new Uri("rabbitmq://localhost/get_model"));
+                cfg.AddRequestClient<RentalCarRequest>(new Uri("rabbitmq://localhost/get_rentalcar"));
             });
-            services.AddMassTransitHostedService();*/
+            services.AddMassTransitHostedService();
 
             services.AddControllers();
         }
