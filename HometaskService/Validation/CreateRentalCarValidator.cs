@@ -24,11 +24,14 @@ namespace HometaskService.Validation
                 .Length(6)
                 .Matches("^[A-Z 0-9]*$")
                 .WithMessage("Wrong number");
-            RuleFor(x => x.IsAvailable).NotNull().WithMessage("Can't be null");
             RuleFor(x => x.Mileage)
                 .GreaterThan(0)
                 .LessThan(int.MaxValue)
                 .WithMessage("Wrong Mileage");
+            RuleFor(x => x.ClientId)
+                .GreaterThan(0)
+                .LessThan(int.MaxValue)
+                .WithMessage("Wrong ClientId");
         }
     }
 }

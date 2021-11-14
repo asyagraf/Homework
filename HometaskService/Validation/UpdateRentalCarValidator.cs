@@ -33,6 +33,10 @@ namespace HometaskService.Validation
                 .GreaterThan(0)
                 .LessThan(int.MaxValue)
                 .WithMessage("Wrong Id");
+            RuleFor(x => x.ClientId)
+                .GreaterThan(0)
+                .LessThan(int.MaxValue)
+                .WithMessage("Wrong ClientId");
         }
     }
 }
