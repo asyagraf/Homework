@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace HometaskService.Database
 {
-    internal class HometaskServiceDbContext : DbContext
+    public class HometaskServiceDbContext : DbContext
     {
         public DbSet<DbRentalCar> RentalCars { get; set; }
         public DbSet<DbClient> Clients { get; set; }
