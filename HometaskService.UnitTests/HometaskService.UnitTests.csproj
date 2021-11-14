@@ -17,9 +17,11 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Validators\" />
     <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HometaskService\HometaskService.csproj" />
   </ItemGroup>
 
 </Project>
