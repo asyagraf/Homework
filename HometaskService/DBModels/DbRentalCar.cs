@@ -1,6 +1,6 @@
 ﻿namespace HometaskService.DBModels
 {
-    internal class DbRentalCar
+    public class DbRentalCar
     {
         public int Id { get; set; }
         public string Number { get; set; }
