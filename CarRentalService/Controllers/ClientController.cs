@@ -1,9 +1,7 @@
 ﻿using CarRentalService.Request;
-using MassTransit.Clients;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace CarRentalService.Controllers
@@ -12,33 +10,34 @@ namespace CarRentalService.Controllers
     [Route("[controller]")]
     public class ClientController : ControllerBase
     {
-        public ClientController()
-        {
-
-        }
         [HttpGet("one")]
-        public void Get()
+        public async Task<ClientResponse> Get([FromServices] IRequestClient<ClientRequest> req, [FromQuery] int id)
         {
+            return (await req.GetResponse<ClientResponse>(new ClientRequest() {Id = id})).Message;
         }
 
         [HttpGet("all")]
-        public void GetAll()
+        public async Task<List<ClientResponse>> GetAll([FromServices] IRequestClient<AllClientsRequest> req)
         {
+            return (await req.GetResponse<AllClientsResponse>(new AllRentalCarsRequest())).Message.Clients;
         }
 
         [HttpPost]
-        public void Create()
+        public async Task Create([FromServices] IRequestClient<CreateClientRequest> req, [FromBody] CreateClientRequest create)
         {
+            await req.GetResponse<CUDClientResponse>(create);
         }
 
         [HttpDelete]
-        public void Delete()
+        public async Task Delete([FromServices] IRequestClient<DeleteClientRequest> req, [FromQuery] int id)
         {
+            await req.GetResponse<CUDClientResponse>(new RentalCarRequest() {Id = id});
         }
 
         [HttpPut]
-        public void Update()
+        public async Task Update([FromServices] IRequestClient<UpdateClientRequest> req, [FromBody] UpdateClientRequest update)
         {
+            await req.GetResponse<CUDClientResponse>(update);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace CarRentalService.Controllers
         [HttpGet("one")]
         public async Task<RentalCarResponse> Get([FromServices] IRequestClient<RentalCarRequest> req, [FromQuery] int id)
         {
-            return (await req.GetResponse<RentalCarResponse>(new RentalCarRequest(){ Id = id })).Message;
+            return (await req.GetResponse<RentalCarResponse>(new RentalCarRequest(){Id = id})).Message;
         }
 
         [HttpGet("all")]
@@ -31,7 +31,7 @@ namespace CarRentalService.Controllers
         [HttpDelete]
         public async Task Delete([FromServices] IRequestClient<DeleteRentalCarRequest> req, [FromQuery] int id)
         {
-            await req.GetResponse<CUDRentalCarResponse>(new RentalCarRequest() { Id = id });
+            await req.GetResponse<CUDRentalCarResponse>(new RentalCarRequest() {Id = id});
         }
 
         [HttpPut]

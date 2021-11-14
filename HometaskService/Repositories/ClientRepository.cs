@@ -33,18 +33,24 @@ namespace HometaskService.Repositories
         public async Task Delete(int id)
         {
             var client = await dbContext.Clients.FindAsync(id);
-            dbContext.Clients.Remove(client);
-            await dbContext.SaveChangesAsync();
+            if (client is not null)
+            {
+                dbContext.Clients.Remove(client);
+                await dbContext.SaveChangesAsync();
+            }
         }
 
         public async Task Update(DbClient client)
         {
             var newClient = await dbContext.Clients.FindAsync(client.Id);
-            newClient.FirstName = client.FirstName;
-            newClient.LastName = client.LastName;
-            newClient.MiddleName = client.MiddleName;
-            newClient.Experience = client.Experience;
-            await dbContext.SaveChangesAsync();
+            if (newClient is not null)
+            {
+                newClient.FirstName = client.FirstName;
+                newClient.LastName = client.LastName;
+                newClient.MiddleName = client.MiddleName;
+                newClient.Experience = client.Experience;
+                await dbContext.SaveChangesAsync();
+            }
         }
     }
 }

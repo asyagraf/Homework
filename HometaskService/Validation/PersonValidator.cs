@@ -25,7 +25,7 @@ namespace HometaskService.Validation
                 .NotNull()
                 .NotEmpty()
                 .MaximumLength(100)
-                .WithMessage("Wrong name");
+                .WithMessage("Wrong surname");
         }
     }
 }
