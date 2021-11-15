@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\" />
-    <Folder Include="Repositories\" />
+    <Folder Include="Consumers\" />
   </ItemGroup>
 
   <ItemGroup>
