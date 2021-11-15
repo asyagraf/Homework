@@ -32,20 +32,20 @@ namespace HometaskService.UnitTests.Repositories
         {
         }
 
-        #region Get
-        [Test]
-        public void ShouldGet()
-        {
-            if (dbContext.RentalCars.Find(1) is null)
-            {
-                Assert.IsNull(repository.GetById(1));
-            }
-            else
-            {
-                Assert.IsInstanceOf<DbRentalCar>(repository.GetById(1));
-            }
-        }
-        #endregion
+        //#region Get
+        //[Test]
+        //public void ShouldGet()
+        //{
+        //    if (dbContext.RentalCars.Find(1) is null)
+        //    {
+        //        Assert.IsNull(repository.GetById(1));
+        //    }
+        //    else
+        //    {
+        //        Assert.IsInstanceOf<DbRentalCar>(repository.GetById(1));
+        //    }
+        //}
+        //#endregion
 
         //#region Delete
         //[Test]

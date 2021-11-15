@@ -26,39 +26,39 @@ namespace HometaskService.UnitTests.Repositories
         {
         }
 
-        #region Get
-        [Test]
-        public void ShouldGet()
-        {
-        }
-        #endregion
+        //#region Get
+        //[Test]
+        //public void ShouldGet()
+        //{
+        //}
+        //#endregion
 
-        #region Delete
-        [Test]
-        public void ShouldDelete()
-        {
-        }
-        #endregion
+        //#region Delete
+        //[Test]
+        //public void ShouldDelete()
+        //{
+        //}
+        //#endregion
 
-        #region Create
-        [Test]
-        public void ShouldCreate()
-        {
-        }
-        #endregion
+        //#region Create
+        //[Test]
+        //public void ShouldCreate()
+        //{
+        //}
+        //#endregion
 
-        #region Update
-        [Test]
-        public void ShouldUpdate()
-        {
-        }
-        #endregion
+        //#region Update
+        //[Test]
+        //public void ShouldUpdate()
+        //{
+        //}
+        //#endregion
 
-        #region GetAll
-        [Test]
-        public void ShouldGetAll()
-        {
-        }
-        #endregion
+        //#region GetAll
+        //[Test]
+        //public void ShouldGetAll()
+        //{
+        //}
+        //#endregion
     }
 }
